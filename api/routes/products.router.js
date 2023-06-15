@@ -2,7 +2,7 @@
 const express = require('express');
 
 const ProductsService = require('../services/product.service');
-const validatorHandler = require('./../middlewars/validator.handler');
+const validatorHandler = require('../middlewars/validator.handler');
 const {createProductSchema, getProductSchema, updateProductSchema} = require('./../schemas/product.schema');
 
 const service = new ProductsService();
