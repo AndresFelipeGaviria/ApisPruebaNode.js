@@ -1,30 +1,30 @@
-const faker = require('faker');
+const boom = require('@hapi/boom');
 
-class UsersService {
+class UserService {
+  constructor() {}
 
-  constructor() {
-    this.users = []
-    this.generate();
+  async create(data) {
+    return data;
   }
 
-  generate() {
-
-    for (let index = 0; index < 10; index++) {
-      this.users.push({
-        uuid: faker.datatype.uuid(),
-        name: faker.name.findName(),
-        email: faker.internet.email(),
-        gander: faker.name.gender(),
-        jobArea: faker.name.jobArea()
-      })
-
-    }
+  async find() {
+    return [];
   }
 
-  getUsers() {
-    return this.users
+  async findOne(id) {
+    return { id };
+  }
 
+  async update(id, changes) {
+    return {
+      id,
+      changes,
+    };
+  }
+
+  async delete(id) {
+    return { id };
   }
 }
 
-module.exports = UsersService;
+module.exports = UserService;

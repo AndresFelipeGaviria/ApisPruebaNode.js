@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  const users = service.getUsers()
+  const users = service.find()
   return res.json(users)
 })
 
