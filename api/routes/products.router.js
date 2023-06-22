@@ -42,10 +42,15 @@ async (req, res, next) => {
 
 router.post('/',
   validatorHandler(createProductSchema, 'body'),
-  async (req, res) => {
-    const body = req.body;
-    const newProduct = await service.create(body);
-    res.status(201).json(newProduct)
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newProduct = await service.create(body);
+      res.status(201).json(newProduct)
+    } catch (error) {
+      next(error)
+    }
+
 });
 
 
