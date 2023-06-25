@@ -2,6 +2,7 @@
 const express = require('express');
 const routerApi = require('./routes')
 const cors = require('cors');
+const { checkApikey } = require('./middlewars/auth.handler');
 
 const {errorHandler, logErrors, boomErrorHandler, ormErrorHandler} = require('./middlewars/error.handler')
 
@@ -22,13 +23,14 @@ const options = {
     }
   }
 }
-app.use(cors(options))
+app.use(cors(options));
+require('../utils/auth')
 
 app.get('/api', (req, res) => {
-  res.send('Hola mi serve en exoress');
+  res.send('Hola mi serve en express');
 });
 
-app.get('/api/nueva-ruta', (req, res) => {
+app.get('/api/nueva-ruta', checkApikey, (req, res) => {
   res.send('Hola, soy una nueva ruta');
 });
 
